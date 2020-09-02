@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: {{ .Values.appName }} 
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+      - image: {{ .Values.containerImage }}
+        name: {{ .Values.appName }}
+        resources: {}
+        volumeMounts:
+        - name: name-volume
+          mountPath: {{ .Values.mountPath }}
+      volumes:
+      - name: name-volume
+        configMap:
+          name: my-name
+status: {}

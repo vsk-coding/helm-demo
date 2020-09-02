@@ -1,0 +1,3 @@
+containerImage: docker.io/vishnusk/py-demo:latest
+appName: py-demo
+mountPath: /opt/config
